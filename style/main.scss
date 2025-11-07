@@ -1,55 +1,73 @@
+// 🌟 Base setup
 * {
     box-sizing: border-box;
 }
 
 body {
-    font-family: sans-serif;
+    font-family: 'Inter', sans-serif;
     text-align: center;
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
-}
-
-.glass {
-    background: rgba(255, 255, 255, 0.1); // transparent layer
-    backdrop-filter: blur(10px); // frosted blur
-    -webkit-backdrop-filter: blur(10px); // Safari fix
-    border: 1px solid rgba(255, 255, 255, 0.2); // light outline
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2); // subtle shadow below
-    border-radius: 7px;
-    transition: 200ms;
-}
-
-
-.header {
-    box-sizing: border-box;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    color: #001030;
+    min-height: 100vh;
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+}
+
+button {
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+// 🔧 Utility Mixins
+@mixin center-flex {
+    display: flex;
+    justify-content: center;
     align-items: center;
-    padding: 10px 20px; // ✅ commas are not valid here; use spaces
+}
+
+
+// 💎 Glassmorphism utility
+.glass {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    transition: 250ms ease;
+}
+
+// 🧭 Header section
+.header {
+    @extend .glass;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 30px;
+    margin: 20px 20px 20px 20px;
+    border-radius: 20px;
 
     h1 {
-        box-sizing: border-box;
-        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-        letter-spacing: 0.2cap;
-        hyphens: auto;
-        color: #000030;
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        letter-spacing: 1px;
+        color: #001050;
         margin: 0;
     }
 
     nav {
-        box-sizing: border-box;
         display: flex;
-        justify-content: center;
-        align-items: center;
         gap: 20px;
 
         a {
             text-decoration: none;
-            font-size: 18px;
-            color: #000030;
-            padding: 6px 12px;
-            border-radius: 6px;
+            font-size: 16px;
+            color: #001040;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-weight: 500;
             transition: background-color 0.25s ease, color 0.25s ease;
 
             &:hover {
@@ -58,56 +76,112 @@ body {
             }
 
             &.active {
-                background-color: #0020a0;
+                background-color: #0010a0;
                 color: white;
             }
         }
     }
 }
 
-
+// 🧱 Layout Containers
 .container {
     display: flex;
-    position: relative;
-    top: 10vh;
     justify-content: space-around;
-    align-items: center;
+    align-items: flex-start;
+    padding: 4vh 3vw;
+    flex-wrap: wrap;
+}
+
+.todos-container,
+.summary-container {
+    @extend .glass;
+    padding: 20px;
+    border-radius: 14px;
+    height: 70vh;
+    overflow-y: auto;
 }
 
 .todos-container {
-    width: 60vw;
-    height: 75vh;
+    width: 58vw;
 }
 
 .summary-container {
     width: 30vw;
-    height: 75vh;
+    min-width: 300px;
 }
 
-.completed {
-    color: green;
-}
-
+// ✅ Todo Row
 .todo-row-container {
     @extend .glass;
-    @extend .completed;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     font-size: 18px;
-    padding: 10px 30px;
-    margin: 10px 30px;
-    font-weight: 700;
+    padding: 12px 20px;
+    margin: 10px 0;
+    font-weight: 600;
+    border-left: 4px solid #4caf50;
+    transition: transform 0.2s ease;
+
+    &:hover {
+        transform: scale(1.02);
+    }
+
+    &.completed {
+        color: #4caf50;
+        text-decoration: line-through;
+    }
 }
 
+// 🔤 Input Section
 .input-container {
-    box-sizing: border-box;
-    width: 100dvw;
-    height: 100dvh;
-    justify-content: center;
-    align-items: center;
+    @include center-flex;
+    width: 100%;
 
     .input-box {
-        background-color: red;
-        padding: 10px;
-        margin: 100px;
+        @extend .glass;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 30px 40px;
+        border-radius: 20px;
+        margin-top: 20vh;
+        gap: 20px;
+        padding-top: 100px;
+        padding-bottom: 100px;
+        box-shadow: 0 6px 30px rgba(0, 0, 0, 0.15);
+
+        input {
+            padding: 10px 16px;
+            font-size: 18px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            outline: none;
+            transition: 0.25s ease;
+
+            &:focus {
+                border-color: #4caf50;
+                box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+            }
+        }
+
+        button {
+            padding: 10px 24px;
+            font-size: 16px;
+            background-color: #4caf50;
+            color: white;
+            border-radius: 10px;
+            border: none;
+            font-weight: 600;
+
+            &:hover {
+                background-color: darken(#4caf50, 8%);
+                transform: translateY(-1px);
+            }
+
+            &:active {
+                transform: translateY(1px);
+            }
+        }
     }
 }

@@ -7,6 +7,7 @@ use leptos_router::{
 
 // Make use imports of pages
 use crate::pages::{HomePage, JunctionPage};
+use crate::components::AppHeader;
 
 #[component]
 pub fn App() -> impl IntoView {
@@ -24,6 +25,7 @@ pub fn App() -> impl IntoView {
         // content for this welcome page
         <Router>
             <main>
+                <AppHeader />
                 <Routes fallback=move || "Not found.">
                     <Route path=StaticSegment("") view=HomePage />
                     <Route path=StaticSegment("/junc") view=JunctionPage />

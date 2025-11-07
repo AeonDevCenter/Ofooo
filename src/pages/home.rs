@@ -13,11 +13,18 @@ pub fn HomePage() -> impl IntoView {
 
             <div class="container">
                 <div class="todos-container">
-                    <TodoRow todo=Todo::new("Learn Leptos".to_owned())  />
+                {
+                    todos.read().iter().map(|todo| {
+                        "HEllo"
+                    }).collect_view()
+                }
+
                 </div>
 
                 <div class="summary-container">
-                    "Summary content"
+                    {
+
+                    }
                 </div>
             </div>
         </div>

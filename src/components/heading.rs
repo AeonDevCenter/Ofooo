@@ -4,15 +4,11 @@ use leptos_router::components::A as Link;
 #[component]
 pub fn AppHeader() -> impl IntoView {
     view! {
-        <div class:header >
+        <div class:header>
             <h1>"ofooo"</h1>
             <nav>
-                <Link href="/">
-                    "Dashboard"
-                </Link>
-                <Link href="/junction">
-                    "Junction"
-                </Link>
+                <Link href="/">"Dashboard"</Link>
+                <Link href="/junc">"Junction"</Link>
             </nav>
         </div>
     }

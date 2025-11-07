@@ -1,97 +1,113 @@
 * {
-	box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-	font-family: sans-serif;
-	text-align: center;
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
+    font-family: sans-serif;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 .glass {
-	background: rgba(255, 255, 255, 0.1); // transparent layer
-	backdrop-filter: blur(10px); // frosted blur
-	-webkit-backdrop-filter: blur(10px); // Safari fix
-	border: 1px solid rgba(255, 255, 255, 0.2); // light outline
-	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2); // subtle shadow below
-	border-radius: 7px;
-	transition: 200ms;
+    background: rgba(255, 255, 255, 0.1); // transparent layer
+    backdrop-filter: blur(10px); // frosted blur
+    -webkit-backdrop-filter: blur(10px); // Safari fix
+    border: 1px solid rgba(255, 255, 255, 0.2); // light outline
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2); // subtle shadow below
+    border-radius: 7px;
+    transition: 200ms;
 }
 
 
 .header {
-	box-sizing: border-box;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	padding: 10px 20px; // ✅ commas are not valid here; use spaces
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 20px; // ✅ commas are not valid here; use spaces
 
-	h1 {
-		box-sizing: border-box;
-		font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-		letter-spacing: 0.2cap;
-		color: #000030;
-		margin: 0;
-	}
+    h1 {
+        box-sizing: border-box;
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        letter-spacing: 0.2cap;
+        hyphens: auto;
+        color: #000030;
+        margin: 0;
+    }
 
-	nav {
-		box-sizing: border-box;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		gap: 20px;
+    nav {
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
 
-		a {
-			text-decoration: none;
-			font-size: 18px;
-			color: #000030;
-			padding: 6px 12px;
-			border-radius: 6px;
-			transition: background-color 0.25s ease, color 0.25s ease;
+        a {
+            text-decoration: none;
+            font-size: 18px;
+            color: #000030;
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: background-color 0.25s ease, color 0.25s ease;
 
-			&:hover {
-				@extend .glass;
-				color: black;
-			}
+            &:hover {
+                @extend .glass;
+                color: black;
+            }
 
-			&.active {
-				background-color: #0020a0;
-				color: white;
-			}
-		}
-	}
+            &.active {
+                background-color: #0020a0;
+                color: white;
+            }
+        }
+    }
 }
 
 
 .container {
-	display: flex;
-	position: relative;
-	top: 10vh;
-	justify-content: space-around;
-	align-items: center;
+    display: flex;
+    position: relative;
+    top: 10vh;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .todos-container {
-	width: 60vw;
-	height: 75vh;
-	background-color: red;
+    width: 60vw;
+    height: 75vh;
 }
 
 .summary-container {
-	width: 30vw;
-	height: 75vh;
-	background-color: #0020a0;
+    width: 30vw;
+    height: 75vh;
 }
 
 .completed {
-	background: #108200;
-
+    color: green;
 }
 
 .todo-row-container {
-    background-color: #000030;
+    @extend .glass;
+    @extend .completed;
     display: flex;
-    outline: #0020a0;
+    font-size: 18px;
+    padding: 10px 30px;
+    margin: 10px 30px;
+    font-weight: 700;
+}
+
+.input-container {
+    box-sizing: border-box;
+    width: 100dvw;
+    height: 100dvh;
+    justify-content: center;
+    align-items: center;
+
+    .input-box {
+        background-color: red;
+        padding: 10px;
+        margin: 100px;
+    }
 }

@@ -6,7 +6,7 @@ use leptos_router::{
 };
 
 // Make use imports of pages
-use crate::pages::HomePage;
+use crate::pages::{HomePage, JunctionPage};
 
 #[component]
 pub fn App() -> impl IntoView {
@@ -14,22 +14,23 @@ pub fn App() -> impl IntoView {
     provide_meta_context();
 
     view! {
-            // injects a stylesheet into the document <head>
-            // id=leptos means cargo-leptos will hot-reload this stylesheet
-            <Stylesheet id="leptos" href="/pkg/ofooo.css"/>
+        // injects a stylesheet into the document <head>
+        // id=leptos means cargo-leptos will hot-reload this stylesheet
+        <Stylesheet id="leptos" href="/pkg/ofooo.css" />
 
-            // sets the document title
-            <Title text="Ofooo"/>
+        // sets the document title
+        <Title text="Ofooo" />
 
-            // content for this welcome page
-            <Router>
-                <main>
-                    <Routes fallback=move || "Not found.">
-                        <Route path=StaticSegment("") view=HomePage />
-                        <Route path=WildcardSegment("any") view=NotFound />
-                    </Routes>
-                </main>
-            </Router>
+        // content for this welcome page
+        <Router>
+            <main>
+                <Routes fallback=move || "Not found.">
+                    <Route path=StaticSegment("") view=HomePage />
+                    <Route path=StaticSegment("/junc") view=JunctionPage />
+                    <Route path=WildcardSegment("any") view=NotFound />
+                </Routes>
+            </main>
+        </Router>
     }
 }
 
@@ -50,7 +51,5 @@ fn NotFound() -> impl IntoView {
         resp.set_status(actix_web::http::StatusCode::NOT_FOUND);
     }
 
-    view! {
-        <h1>"Not Found"</h1>
-    }
+    view! { <h1>"Not Found"</h1> }
 }

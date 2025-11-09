@@ -16,6 +16,8 @@ leptos_meta = { version = "0.8.2" }
 leptos_actix = { version = "0.8.2", optional = true }
 leptos_router = { version = "0.8.2" }
 wasm-bindgen = "=0.2.105"
+uuid = { version = "1.3", features = ["v4", "js"] }
+icondata = "0.4"
 
 [features]
 csr = ["leptos/csr"]

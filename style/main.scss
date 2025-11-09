@@ -110,9 +110,8 @@ button {
     min-width: 300px;
 }
 
-// ✅ Todo Row
 .todo-row-container {
-    @extend .glass;
+    @extend .glass; // inherits a frosted-glass background, blur, etc.
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -120,7 +119,7 @@ button {
     padding: 12px 20px;
     margin: 10px 0;
     font-weight: 600;
-    border-left: 4px solid #4caf50;
+    border-left: 4px solid #4caf50; // green accent line
     transition: transform 0.2s ease;
 
     &:hover {
@@ -128,10 +127,13 @@ button {
     }
 
     &.completed {
+        background: url("assets/mark.svg");
+
         color: #4caf50;
         text-decoration: line-through;
     }
 }
+
 
 // 🔤 Input Section
 .input-container {

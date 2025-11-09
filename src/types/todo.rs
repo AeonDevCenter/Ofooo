@@ -1,19 +1,24 @@
+use leptos::logging::log;
+use uuid::Uuid;
 
 #[derive(Debug, Clone)]
 pub struct Todo {
-    pub task: String,
-    pub is_completed: bool,
+    pub id: Uuid,
+    pub title: String,
+    pub done: bool,
 }
 
 impl Todo {
-    pub fn new(task: String) -> Self {
+    pub fn new(title: String) -> Self {
         Self {
-            task,
-            is_completed: false,
+            id: Uuid::new_v4(),
+            title,
+            done: false,
         }
     }
 
-    pub fn set_completed(&mut self) {
-        self.is_completed = true;
+    pub fn toggle_done(&mut self) {
+        self.done = !self.done;
+        log!("{} : {}", self.title, self.done);
     }
 }

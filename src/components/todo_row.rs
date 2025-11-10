@@ -3,11 +3,18 @@ use leptos::prelude::*;
 
 /// Documentation for [`TodoRow`]
 #[component]
-pub fn TodoRow(todo_map: RwSignal<Todo>) -> impl IntoView {
+pub fn TodoRow(todo: Todo) -> impl IntoView {
+    let mut check_todo = todo.clone();
     view! {
         <div class="todo-row-container">
-            <button class=("completed", move || todo_map.get().done)  on:click=move |_| todo_map.get().toggle_done()></button>
-            {move || todo_map.get().title}
+            <input type="checkbox"
+            class="checked-input"
+            prop:checked= move || todo.done.get()
+             on:change=move |ev| {
+                    let checked = event_target_checked(&ev);
+                    check_todo.set_todo(checked);
+                } />
+            {move || todo.title.get()}
         </div>
     }
 }

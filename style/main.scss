@@ -126,14 +126,12 @@ button {
         transform: scale(1.02);
     }
 
-    &.completed {
-        background: url("assets/mark.svg");
-
-        color: #4caf50;
-        text-decoration: line-through;
-    }
 }
 
+.checked-input {
+    background-color: #4caf50;
+    
+}
 
 // 🔤 Input Section
 .input-container {

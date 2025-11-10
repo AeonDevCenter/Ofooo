@@ -6,17 +6,17 @@ use leptos::prelude::*;
 /// Documentation for [`HomePage`]
 #[component]
 pub fn HomePage() -> impl IntoView {
-    let todos = RwSignal::<Vec<RwSignal<Todo>>>::new(Vec::new());
+    let todos: RwSignal<Vec<Todo>> = RwSignal::new(Vec::new());
     todos.update(|vec| {
-        vec.push(RwSignal::new(Todo::new("Learn Leptos".to_string())));
-        vec.push(RwSignal::new(Todo::new("Learn Leptos".to_string())));
-        vec.push(RwSignal::new(Todo::new("Learn Leptos".to_string())));
-        vec.push(RwSignal::new(Todo::new("Learn Leptos".to_string())));
+        vec.push(Todo::new("Learn Leptos".to_string()));
+        vec.push(Todo::new("Learn Leptos".to_string()));
+        vec.push(Todo::new("Learn Leptos".to_string()));
+        vec.push(Todo::new("Learn Leptos".to_string()));
     });
 
     Effect::new(move || {
         for todo in todos.get().iter() {
-            log!("{:?}", todo.get());
+            log!("{:?}", todo);
         }
     });
 
@@ -26,10 +26,10 @@ pub fn HomePage() -> impl IntoView {
                 <div class="todos-container">
                     <For
                         each=move || todos.get()
-                        key=|state| state.read_only()
+                        key=|todo| todo.id
                         let(child)
                     >
-                        <TodoRow todo_map={child} />
+                        <TodoRow todo={child} />
                     </For>
                 </div>
 

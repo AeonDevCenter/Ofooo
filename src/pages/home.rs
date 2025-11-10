@@ -24,20 +24,12 @@ pub fn HomePage() -> impl IntoView {
         <div>
             <div class="container">
                 <div class="todos-container">
-                    <For
-                        each=move || todos.get()
-                        key=|todo| todo.id
-                        let(child)
-                    >
-                        <TodoRow todo={child} />
+                    <For each=move || todos.get() key=|todo| todo.id let(child)>
+                        <TodoRow todo=child />
                     </For>
                 </div>
 
-                <div class="summary-container">
-                    {
-
-                    }
-                </div>
+                <div class="summary-container">{}</div>
             </div>
         </div>
     }

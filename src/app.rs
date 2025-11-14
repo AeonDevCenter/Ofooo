@@ -1,4 +1,4 @@
-use leptos::prelude::*;
+use leptos::{ev::MouseEvent, prelude::*};
 use leptos_meta::{provide_meta_context, Stylesheet, Title};
 use leptos_router::{
     components::{Route, Router, Routes},
@@ -6,33 +6,14 @@ use leptos_router::{
 };
 
 // Make use imports of pages
-use crate::pages::{HomePage, JunctionPage};
 use crate::components::AppHeader;
+use crate::pages::{HomePage, JunctionPage};
 
 #[component]
 pub fn App() -> impl IntoView {
-    // Provides context that manages stylesheets, titles, meta tags, etc.
-    provide_meta_context();
-
+    let (toggled, set_toggled) = signal(false);
     view! {
-        // injects a stylesheet into the document <head>
-        // id=leptos means cargo-leptos will hot-reload this stylesheet
-        <Stylesheet id="leptos" href="/pkg/ofooo.css" />
-
-        // sets the document title
-        <Title text="Ofooo" />
-
-        // content for this welcome page
-        <Router>
-            <main>
-                <AppHeader />
-                <Routes fallback=move || "Not found.">
-                    <Route path=StaticSegment("") view=HomePage />
-                    <Route path=StaticSegment("/junc") view=JunctionPage />
-                    <Route path=WildcardSegment("any") view=NotFound />
-                </Routes>
-            </main>
-        </Router>
+        <p>"Toggled? " {toggled}</p>
     }
 }
 
